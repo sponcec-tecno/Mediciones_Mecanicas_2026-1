@@ -6,11 +6,15 @@ double cost(double x);
 double aux(double x, int n);
 double f(double th_0, double th);
 
+double const g = 9.7754427;
+double const l = 0.15;
+
 int main(int argc, char **argv){
 
 //	for(double t = 0.0; t < M_PI; t+=0.031415){
 //		std::cout << t << " " << cost(t) << "\n";
 //	}
+	double aux = std::sqrt(l/g);
 
 	return 0;
 }
@@ -36,6 +40,7 @@ double aux(double x, int n){
 }
 
 double f(double th_0, double th){
+	if (th_0==th) {return 0.0;}
 	return 1/(cost(th_0)-cost(th));
 }
 
