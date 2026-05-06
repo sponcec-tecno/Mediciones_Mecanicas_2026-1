@@ -7,7 +7,7 @@ long long fct(int n);
 double cost(double x);
 double aux(double x, int n);
 double f(double th);
-double gauss5(double a, double b, funptr fun);
+double simpson(double a, double b, int nintervals, funptr fun);
 
 double const g = 9.7754427;
 double const l = 0.15;
@@ -19,14 +19,12 @@ int main(int argc, char **argv){
 //		std::cout << t << " " << cost(t) << "\n";
 //	}
 
-	double n = 200;
+	int n = 200;
 
 	double aux = std::sqrt(l/g);
-	for(double x = -th_0; x < th_0; x+=(th_0/n)){
-              std::cout << x << " " << gauss5(x, x+(th_0/n), f) << "\n";
+	for(double x = -th_0+(th_0/n); x < th_0-(th_0/n); x+=(th_0/n)){
+              std::cout << x << " " << std::fabs(simpson(x, x+(th_0/n), n, f)) << "\n";
 	}
-
-
 
 	return 0;
 }
@@ -55,28 +53,22 @@ double f(double th){
 	return 1/(cost(th_0)-cost(th));
 }
 
-double gauss5(double a, double b, funptr fun)
+double simpson(double a, double b, int nintervals, funptr fun)
 {
-    // puntos de gauss
-    std::vector<double> x = {0.0000000000000000, -0.5384693101056831, 
-                            0.5384693101056831, -0.9061798459386640, 
-                            0.9061798459386640};
-    // pesos 
-    std::vector<double> w = {0.5688888888888889, 0.4786286704993665,
-                             0.4786286704993665, 0.2369268850561891,
-                             0.2369268850561891};
-
-    // aux
-    double aux1 = (b-a)/2;
-    double aux2 = (b+a)/2;
-
-    // suma
-    double suma = 0.0;
-    for (int ii = 0; ii < 5; ii++) {
-        suma = suma + w[ii]*fun(aux1*x[ii] + aux2);
+    double deltax = (b-a)/(nintervals);
+    double suma = 0.0; 
+    double sum = 0.0; 
+    for (int k=1; k<= nintervals/2; k++){
+        double xk = a+((2*k-1)*deltax);
+        suma = suma + fun(xk);
     }
+        for (int k=0.0; k<= nintervals/2 -1 ; k++){
+        double xk = a+(2*k*deltax);
+        sum = sum + fun(xk);
+    }
+    suma = (4*suma + 2*sum + fun(a) + fun(b))*(deltax/3);
 
-    return aux1*suma;
+    return suma;
 }
 
 //Implementar función factorial
