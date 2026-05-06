@@ -4,12 +4,13 @@
 long long fct(int n);
 double cost(double x);
 double aux(double x, int n);
+double f(double th_0, double th);
 
 int main(int argc, char **argv){
 
-	for(double t = 0.0; t < M_PI; t+=0.031415){
-		std::cout << t << " " << cost(t) << "\n";
-	}
+//	for(double t = 0.0; t < M_PI; t+=0.031415){
+//		std::cout << t << " " << cost(t) << "\n";
+//	}
 
 	return 0;
 }
@@ -32,6 +33,10 @@ double cost(double x){
 
 double aux(double x, int n){
 	return std::pow(x,n)/fct(n);
+}
+
+double f(double th_0, double th){
+	return 1/(cost(th_0)-cost(th));
 }
 
 //Implementar función factorial
