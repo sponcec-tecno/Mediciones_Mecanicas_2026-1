@@ -4,10 +4,10 @@ import matplotlib.pylab as plt
 datos=np.genfromtxt("data.dat")
 
 fig, ax = plt.subplots()
-ax.plot(t, u, label="u(x)")
-ax.plot(t, v, label="v(x)")
-ax.set_xlabel('t')
-ax.set_ylabel('u(t) y v(t)')
+ax.plot(datos[:,0], datos[:,1], label="my")
+ax.plot(datos[:,0], np.cos(datos[:,0]), label="its", linestyle="--")
+ax.set_xlabel('t(s)')
+ax.set_ylabel('cos(t)')
 ax.legend()
 
-plt.savefig('serie.pdf')
+plt.savefig('compare.pdf')
