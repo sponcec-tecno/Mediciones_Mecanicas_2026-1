@@ -11,7 +11,7 @@ double f(double th);
 
 //double const g = 9.7754427;
 //double const l = 0.15;
-double const a = M_PI/2;
+double const a = M_PI/4;
 double const th_0 = (3*M_PI/4);
 
 int main(int argc, char **argv){
