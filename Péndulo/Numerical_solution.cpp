@@ -28,7 +28,7 @@ int main(int argc, char **argv){
 	double a = 0.0;
 	double b = 2.0;
 	for(double x = a; x < b; x+= ((b-a)/n)){
-		std::cout << x << " " << simpson(x, (b-a)/n, 10, f) << "\n";
+		std::cout << x << " " << simpson(x, x+((b-a)/n), 10, f) << "\n";
 	}
 	// std::cout << simpson(-1.0, 2, 1000, f) << "\n";
 
