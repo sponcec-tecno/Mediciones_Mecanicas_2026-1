@@ -22,9 +22,15 @@ int main(int argc, char **argv){
 	int n = 200;
 
 	double aux = std::sqrt(l/g);
-	for(double x = -th_0+(th_0/n); x < th_0-(th_0/n); x+=(th_0/n)){
-              std::cout << x << " " << std::fabs(simpson(x, x+(th_0/n), n, f)) << "\n";
+	// for(double x = -th_0+(th_0/n); x < th_0-(th_0/n); x+=(th_0/n)){
+    //           std::cout << x << " " << std::fabs(simpson(x, x+(th_0/n), n, f)) << "\n";
+	// }
+	double a = 0.0;
+	double b = 2.0;
+	for(double x = a; x < b; x+= ((b-a)/n)){
+		std::cout << x << " " << simpson(x, (b-a)/n, 10, f) << "\n";
 	}
+	// std::cout << simpson(-1.0, 2, 1000, f) << "\n";
 
 	return 0;
 }
@@ -50,7 +56,8 @@ double aux(double x, int n){
 }
 
 double f(double th){
-	return 1/(cost(th_0)-cost(th));
+	//return 1/(cost(th_0)-cost(th));
+	return std::pow(th, 2);
 }
 
 double simpson(double a, double b, int nintervals, funptr fun)
