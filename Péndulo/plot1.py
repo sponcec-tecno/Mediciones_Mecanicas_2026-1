@@ -57,11 +57,24 @@ l = 0.15
 
 t *= 1/2*np.sqrt(l/g)
 
-fig, ax = plt.subplots()
-ax.plot(x[2:-1], t, label="Numéricamente")
-plt.scatter(x_xp, y_xp, color='red', s=10, label="Mis datos")
-ax.set_xlabel(r'$\vartheta$(rad)')
-ax.set_ylabel(r'F($\vartheta$)')
-ax.legend()
+a = [0.0175248, 0.00937745, 0.0223765, 0.872178]
 
-plt.title("Función integrada")
+def p(b):
+  return (a[0]*(b**3))+(a[1]*(b*b))+(a[2]*(b))+a[3]
+
+pol = p(x)
+
+err1 = (abs((pol[2:-1]-0.9)-t)/(pol[2:-1]-0.9))*100
+#err2 = (abs(t-((pol[2:-1])-0.9))/t)*100
+fig, ax = plt.subplots()
+#ax.plot(x[2:-1], t, label="Numéricamente")
+#plt.scatter(x_xp, y_xp, color='red', s=10, label="Experimentales")
+#ax.plot(x, pol-0.9, label="Ajuste polinómico")
+ax.plot(x[2:-1]-1.0, err1)
+
+ax.set_xlabel(r'$\theta(rad)$')
+ax.set_ylabel(r'Error(%)')
+#ax.legend()
+
+plt.title("Comparación métodos (error del numérico frente al ajuste)")
+plt.savefig("TF2.png")
